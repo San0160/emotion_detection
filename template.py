@@ -1,4 +1,4 @@
-# IMP---- Used this template for most projects
+# IMP new template improved ones
 
 import os
 from pathlib import Path
