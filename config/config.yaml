@@ -1,0 +1,42 @@
+# Template for dataset path
+
+artifacts_root: artifacts
+
+data_injection:
+  root_dir: artifacts/data_injection
+  source_URL: https://huggingface.co/datasets/San0160/RAF-DB/resolve/main/Organized.zip  
+  local_data_file: artifacts/data_injection/data.zip
+  unzip_dir: artifacts/data_injection
+
+data_validation:
+  root_dir: artifacts/data_validation
+  STATUS_FILE: artifacts/data_validation/status.txt
+  ALL_REQUIRED_FILES: ["data.csv"]
+
+
+data_processing:
+  root_dir: artifacts/data_preprocessing
+  local_data_file: artifacts/data_preprocessing/processed_data.csv
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_preprocessing/processed_data.csv
+  vectorizer_path: artifacts/data_transformation/tfidf.pkl
+
+
+model_trainer:
+  root_dir:  artifacts/model_trainer
+  data_path: artifacts/data_preprocessing/processed_data.csv
+  vectorizer_path: artifacts/data_transformation/tfidf.pkl
+  model_path: artifacts/model_trainer/knn_model.pkl
+  n_neighbors: 10
+  metric: cosine
+  algorithm: brute
+
+model_evaluation:
+  root_dir:  artifacts/model_evaluation
+  data_path: artifacts/data_preprocessing/processed_data.csv
+  model_path: artifacts/model_trainer/knn_model.pkl
+  metrics_file: artifacts/model_evaluation/metrics.csv
+  sample_size: 200
+  n_recommendations: 5
